@@ -31,7 +31,7 @@ MCP Server for interacting with the MyAnimeList API, allowing LLM clients to acc
 
 ### Anime
 - **get_anime**: Get a list of anime based on a search query and filters
-- **get_anime_details**: Get details of an anime by its ID
+- **get_anime_details**: Get details of an anime by its ID, like recommendations, studios, broadcasting, etc.
 - **get_anime_ranking**: Get anime rankings
 - **get_seasonal_anime**: Get seasonal anime based on year and season
 - **get_anime_list**: Get an user's anime list based on it's username
