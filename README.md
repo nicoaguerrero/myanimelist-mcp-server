@@ -36,19 +36,19 @@ MCP Server for interacting with the MyAnimeList API, allowing LLM clients to acc
 - **get_seasonal_anime**: Get seasonal anime based on year and season
 - **get_anime_list**: Get an user's anime list based on it's username
 - **get_suggested_anime**: [Requires Auth] Get anime recommendations for a logged user
-- **update_myanimelist**: [Requires Auth] (Not implemented yet)
-- **delete_myanimelist_item**: [Requires Auth] (Not implemented yet)
+- **update_myanimelist**: [Requires Auth] Update an anime from the logged user's anime list
+- **delete_myanimelist_item**: [Requires Auth] Delete an anime from the logged user's anime list
 
 ### Manga
 - **get_manga**: Get a list of manga based on a search query and filters
 - **get_manga_details**: Get details of a manga by its ID
 - **get_manga_ranking**: Get manga rankings
 - **get_manga_list**:  Get an user's manga list based on it's username
-- **update_mymangalist**: [Requires Auth] (Not implemented yet)
-- **delete_mymangalist_item**: [Requires Auth] (Not implemented yet)
+- **update_mymangalist**: [Requires Auth] Update a manga from the logged user's manga list
+- **delete_mymangalist_item**: [Requires Auth] Delete a manga from the logged user's manga list
 
 ### User
-- **get_user_profile**: [Requires Auth] (Not implemented yet)
+- **get_user_profile**: [Requires Auth] Get details about the logged user
 
 ### Get an MyAnimeList API Token for Auth
 
