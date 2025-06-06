@@ -4,6 +4,7 @@ from mcp.server.fastmcp import FastMCP
 from utils.schemas import *
 from dotenv import load_dotenv
 import os
+from utils.auth import get_mal_access_token
 
 load_dotenv()
 
@@ -193,19 +194,34 @@ def register_tools(mcp: FastMCP):
             return {"error": str(e)}
         
     @mcp.tool()
-    async def get_manga_details(manga_id: int) -> dict:
+    async def get_manga_details(manga_id: int, fields: Optional[List[str]]) -> dict:
         """
         Fetches details of a manga by its ID from MyAnimeList.
         
         Args:
             manga_id (int): The ID of the manga to fetch details for.
+            fields (List[str]): List of fields to include in the response. If None, includes common fields:
+                id, title, main_picture.
+                Valid fields: id, title, main_picture, alternative_titles, start_date, end_date, synopsis, mean,
+                rank, popularity, num_list_users, num_scoring_users, nsfw, created_at, updated_at, media_type,
+                status, genres, my_list_status, num_volumes, num_chapters, authors, pictures,
+                background, related_anime, related_manga, recommendations, serialization
+        
+        Examples:
+        - To get the score: get_manga_details(30230, fields=["mean"])
+        - To get similar mangas: get_manga_details(30230, fields=["recommendations"])
+        - To get genres and synopsis: get_manga_details(30230, fields=["genres", "synopsis"])
         """
         try:
             CLIENT_ID = os.getenv("MAL_CLIENT_ID")
+            default_fields = ["id", "title", "main_picture"]
+            selected_fields = fields if fields else default_fields
+            fields_param = ",".join(selected_fields)
+
             async with httpx.AsyncClient() as client:
                 headers = {"X-MAL-CLIENT-ID": f"{CLIENT_ID}"}
                 response = await client.get(
-                    f"{MAL_API_URL}/manga/{manga_id}",
+                    f"{MAL_API_URL}/manga/{manga_id}?fields={fields_param}",
                     headers=headers)
                 response.raise_for_status()
                 return response.json()
@@ -275,10 +291,35 @@ def register_tools(mcp: FastMCP):
     # NEEDS OAUTH2 AUTHENTICATION    
     """
     @mcp.tool()
-    async def get_suggested_anime()
     async def update_myanimelist()
     async def delete_myanimelist_item()
     async def update_mymangalist()
     async def delete_mymangalist_item()
     async def get_user_profile()
     """
+    
+    @mcp.tool()
+    async def get_suggested_anime(limit: int = 10, offset: int = 0) -> dict:
+        """
+        Fetches suggested anime for the current user from MyAnimeList.
+        
+        Args:
+            limit (int): The number of results to return (default is 10 and max 100).
+            offset (int): The offset for pagination (default is 0).
+        """
+        try:
+            token = await get_mal_access_token()
+            headers = {"Authorization": f"Bearer {token}"}
+            params = {"limit": limit, "offset": offset}
+            async with httpx.AsyncClient() as client:
+                response = await client.get(
+                    f"{MAL_API_URL}/anime/suggestions",
+                    headers = headers,
+                    params = params
+                )
+                response.raise_for_status()
+                return response.json()
+        except httpx.HTTPStatusError as e:
+            return {"error": str(e), "status_code": e.response.status_code}
+        except Exception as e:
+            return {"error": str(e)}

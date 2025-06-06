@@ -35,7 +35,7 @@ MCP Server for interacting with the MyAnimeList API, allowing LLM clients to acc
 - **get_anime_ranking**: Get anime rankings
 - **get_seasonal_anime**: Get seasonal anime based on year and season
 - **get_anime_list**: Get an user's anime list based on it's username
-- **get_suggested_anime**: [Requires Auth] (Not implemented yet)
+- **get_suggested_anime**: [Requires Auth] Get anime recommendations for a logged user
 - **update_myanimelist**: [Requires Auth] (Not implemented yet)
 - **delete_myanimelist_item**: [Requires Auth] (Not implemented yet)
 
@@ -50,7 +50,7 @@ MCP Server for interacting with the MyAnimeList API, allowing LLM clients to acc
 ### User
 - **get_user_profile**: [Requires Auth] (Not implemented yet)
 
-### Get an MyAnimeList API Token (Currently not implemented)
+### Get an MyAnimeList API Token for Auth
 
 To get an API token, follow these steps:
 
@@ -58,9 +58,15 @@ To get an API token, follow these steps:
 2. Click on "Create ID".
 3. Use this URL as your client's "Redirect URL":
 ```
-https://myanimelist.net/
+http://localhost:8080/callback
 ```
 
 4. Click "Submit"
-5. Then click "Edit" in your generated client and you will see the the cliend_ID and client_secret.
-6. Copy them in your `.env` file or environment variables.
+5. Then click "Edit" in your generated client and you will see the the client_ID and client_secret.
+6. Copy them in your `.env` file or environment variables (see .env_example).
+
+
+#### Useful resources
+https://myanimelist.net/apiconfig/references/authorization
+https://myanimelist.net/forum/?topicid=1850649&show=150#msg69272815
+https://myanimelist.net/apiconfig/references/api/v2
