@@ -1,8 +1,18 @@
 # MyAnimeList MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@nicoaguerrero/myanimelist-mcp-server)](https://smithery.ai/server/@nicoaguerrero/myanimelist-mcp-server)
+
 MCP Server for interacting with the MyAnimeList API, allowing LLM clients to access and interact with anime, manga and more.
 
 ## Using with Claude Desktop (or other MCP clients)
+
+### Installing via Smithery
+
+To install myanimelist-mcp-server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@nicoaguerrero/myanimelist-mcp-server):
+
+```bash
+npx -y @smithery/cli install @nicoaguerrero/myanimelist-mcp-server --client claude
+```
 
 ### Manual Installation
 
