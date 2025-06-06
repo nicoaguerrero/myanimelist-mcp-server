@@ -65,7 +65,7 @@ npx -y @smithery/cli install @nicoaguerrero/myanimelist-mcp-server --client clau
 To get an API token, follow these steps:
 
 1. Go to [API](https://myanimelist.net/apiconfig) in profile settings.
-2. Click on "Create ID".
+2. Click on "Create ID" and select app type web.
 3. Use this URL as your client's "Redirect URL":
 ```
 http://localhost:8080/callback

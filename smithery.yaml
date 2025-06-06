@@ -5,16 +5,29 @@ startCommand:
   commandFunction:
     # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
     |-
-    (config) => ({command: 'python', args: ['main.py'], env: {MAL_CLIENT_ID: config.malClientId}})
+    (config) => ({
+      command: 'python',
+      args: ['main.py'],
+      env: {
+        MAL_CLIENT_ID: config.malClientId,
+        MAL_CLIENT_SECRET: config.malClientSecret
+      }
+    })
   configSchema:
     # JSON Schema defining the configuration options for the MCP.
     type: object
     required:
       - malClientId
+      - malClientSecret
     properties:
       malClientId:
         type: string
         default: ""
         description: MyAnimeList API client ID
+      malClientSecret:
+        type: string
+        default: ""
+        description: MyAnimeList API client secret
   exampleConfig:
     malClientId: your_client_id_here
+    malClientSecret: your_client_secret_here
