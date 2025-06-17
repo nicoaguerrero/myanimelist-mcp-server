@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/nicoaguerrero-myanimelist-mcp-server-badge.png)](https://mseep.ai/app/nicoaguerrero-myanimelist-mcp-server)
+
 # MyAnimeList MCP Server
 
 [![smithery badge](https://smithery.ai/badge/@nicoaguerrero/myanimelist-mcp-server)](https://smithery.ai/server/@nicoaguerrero/myanimelist-mcp-server)
